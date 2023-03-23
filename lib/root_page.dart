@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/main_pages/camera_page.dart';
-import 'package:temugov_dev/main_pages/main_page.dart';
+import 'package:temugov_dev/main_pages/home_page.dart';
 import 'package:temugov_dev/main_pages/profile_page.dart';
 
 class RootPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
 
-  List<Widget> pages = const [MainPage(), CameraPage(), ProfilePage()];
+  List<Widget> pages = const [HomePage(), CameraPage(), ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
