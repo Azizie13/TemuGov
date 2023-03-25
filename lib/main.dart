@@ -18,19 +18,23 @@ class MyApp extends StatelessWidget {
       title: 'TemuGov App',
       home: Container(
         decoration: backgroundGradient(),
-        child: AnimatedSplashScreen(
-          splash: const Splash(),
-          splashIconSize: double.infinity,
-          duration: 3000,
-          splashTransition: SplashTransition.scaleTransition,
-          pageTransitionType: PageTransitionType.topToBottom,
-          nextScreen: const RootPage(
-            title: 'TemuGov',
-          ),
-        ),
+        child: animation(),
       ),
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
+      ),
+    );
+  }
+
+  AnimatedSplashScreen animation() {
+    return AnimatedSplashScreen(
+      splash: const Splash(),
+      splashIconSize: double.infinity,
+      duration: 3000,
+      splashTransition: SplashTransition.scaleTransition,
+      pageTransitionType: PageTransitionType.topToBottom,
+      nextScreen: const RootPage(
+        title: 'TemuGov',
       ),
     );
   }

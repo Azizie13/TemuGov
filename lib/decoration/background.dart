@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:temugov_dev/app_styles.dart';
 
 BoxDecoration backgroundGradient() {
   return const BoxDecoration(
@@ -6,8 +7,8 @@ BoxDecoration backgroundGradient() {
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        Colors.white,
-        Colors.lightBlue,
+        kGradient1,
+        kGradient2,
       ],
     ),
   );
