@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:temugov_dev/info_pages/lang_select.dart';
 import 'package:temugov_dev/main_pages/camera_page.dart';
 import 'package:temugov_dev/main_pages/home_page.dart';
 import 'package:temugov_dev/main_pages/profile_page.dart';
+
+import 'decoration/background.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key, required this.title});
@@ -21,11 +24,18 @@ class _RootPageState extends State<RootPage> {
       appBar: AppBar(
         title: Center(child: Text(widget.title)),
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
       ),
-      body: pages[currentPage],
+      body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: backgroundGradient(),
+          child: pages[currentPage]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint("Pressed float action button");
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => const LanguageSelectPage()));
         },
         child: const Icon(Icons.add),
       ),
