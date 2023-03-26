@@ -10,6 +10,8 @@ const Color kLightPurple = Color(0xFF6E3BFF);
 const Color kGradient1 = Color(0xFFEBF5FF);
 const Color kGradient2 = Color(0xFF61BED5);
 
+const Color kGreyButton = Color.fromARGB(197, 217, 217, 217);
+
 final kMontExtraBold = GoogleFonts.montserrat(
   color: kBlack,
   fontWeight: FontWeight.w800,
@@ -28,4 +30,14 @@ final kMontSemiBold = GoogleFonts.montserrat(
 final kMontMedium = GoogleFonts.montserrat(
   color: kBlack,
   fontWeight: FontWeight.w500,
+);
+
+final kOpenSansBold = GoogleFonts.openSans(
+  color: kBlack,
+  fontWeight: FontWeight.w700,
+);
+
+final kOpenSansRegular = GoogleFonts.openSans(
+  color: kBlack,
+  fontWeight: FontWeight.w400,
 );
