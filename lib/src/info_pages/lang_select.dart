@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:temugov_dev/app_styles.dart';
-import 'package:temugov_dev/info_pages/info_page.dart';
-import 'package:temugov_dev/size_config.dart';
+import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/info_pages/info_page.dart';
+import 'package:temugov_dev/src/size_config.dart';
 
 import '../decoration/background.dart';
 

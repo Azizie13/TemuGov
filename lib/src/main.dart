@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:temugov_dev/root_page.dart';
+import 'package:temugov_dev/src/root_page.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:temugov_dev/splash.dart';
-import 'package:temugov_dev/decoration/background.dart';
+import 'package:temugov_dev/src/splash.dart';
+import 'package:temugov_dev/src/decoration/background.dart';
 
 void main() {
   runApp(const MyApp());

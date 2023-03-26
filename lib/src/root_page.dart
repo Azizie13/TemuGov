@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:temugov_dev/info_pages/lang_select.dart';
-import 'package:temugov_dev/main_pages/camera_page.dart';
-import 'package:temugov_dev/main_pages/home_page.dart';
-import 'package:temugov_dev/main_pages/profile_page.dart';
+import 'package:temugov_dev/src/info_pages/lang_select.dart';
+import 'package:temugov_dev/src/main_pages/home/camera_page.dart';
+import 'package:temugov_dev/src/main_pages/home/home_page.dart';
+import 'package:temugov_dev/src/main_pages/home/profile_page.dart';
 
 import 'decoration/background.dart';
 

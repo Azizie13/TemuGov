@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:temugov_dev/app_styles.dart';
-import 'package:temugov_dev/decoration/background.dart';
+import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/decoration/background.dart';
 
 class InfoPage extends StatelessWidget {
   InfoPage({super.key});
