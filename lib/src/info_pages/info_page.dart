@@ -25,7 +25,7 @@ class InfoPage extends StatelessWidget {
         onPageChanged: (pageIndex) => {
           if (pageIndex == _lastPageIndex)
             {
-              Navigator.of(context).push(
+              Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => const LoginPage()))
             }
         },

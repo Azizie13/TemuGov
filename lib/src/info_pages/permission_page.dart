@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
+import 'package:temugov_dev/src/root_page.dart';
 import 'package:temugov_dev/src/size_config.dart';
 
 class PermissionPage extends StatelessWidget {
@@ -16,8 +17,8 @@ class PermissionPage extends StatelessWidget {
         controller: _pageController,
         physics: const BouncingScrollPhysics(),
         children: [
-          firstPage(),
-          secondPage(),
+          firstPage(context),
+          secondPage(context),
         ],
         onPageChanged: (pageIndex) => {
           if (pageIndex == _lastPageIndex)
@@ -29,7 +30,7 @@ class PermissionPage extends StatelessWidget {
     );
   }
 
-  Widget firstPage() {
+  Widget firstPage(BuildContext context) {
     Widget pageNotch = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -90,9 +91,15 @@ class PermissionPage extends StatelessWidget {
             ),
             Container(
                 margin: const EdgeInsets.only(top: 25, bottom: 10.0),
-                child: _buildButton("Turn On Location", () {})),
+                child: _buildButton("Turn On Location", () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const RootPage()));
+                })),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const RootPage()));
+                },
                 child: Text(
                   "Skip for now",
                   style: kMontExtraBold.copyWith(
@@ -106,7 +113,7 @@ class PermissionPage extends StatelessWidget {
     );
   }
 
-  Widget secondPage() {
+  Widget secondPage(BuildContext context) {
     Widget pageNotch = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -167,9 +174,15 @@ class PermissionPage extends StatelessWidget {
             ),
             Container(
                 margin: const EdgeInsets.only(top: 25, bottom: 10.0),
-                child: _buildButton("Turn On Notification", () {})),
+                child: _buildButton("Turn On Notification", () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const RootPage()));
+                })),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const RootPage()));
+                },
                 child: Text(
                   "Skip for now",
                   style: kMontExtraBold.copyWith(

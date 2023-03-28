@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temugov_dev/src/root_page.dart';
+import 'package:temugov_dev/src/info_pages/lang_select.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:temugov_dev/src/splash.dart';
@@ -33,9 +33,7 @@ class MyApp extends StatelessWidget {
       duration: 1000,
       splashTransition: SplashTransition.scaleTransition,
       pageTransitionType: PageTransitionType.topToBottom,
-      nextScreen: const RootPage(
-        title: 'TemuGov',
-      ),
+      nextScreen: const LanguageSelectPage(),
     );
   }
 }
