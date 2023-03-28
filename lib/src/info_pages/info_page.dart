@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
+import 'package:temugov_dev/src/info_pages/login_page.dart';
 
 class InfoPage extends StatelessWidget {
   InfoPage({super.key});
 
   final PageController _pageController = PageController(initialPage: 0);
-  final int _lastPageIndex = 1;
+  final int _lastPageIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,15 @@ class InfoPage extends StatelessWidget {
         children: [
           firstPage(),
           secondPage(),
+          Container(
+            color: Colors.black,
+          ),
         ],
         onPageChanged: (pageIndex) => {
           if (pageIndex == _lastPageIndex)
             {
-              //Navigate to a new page
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginPage()))
             }
         },
       ),
@@ -30,7 +35,8 @@ class InfoPage extends StatelessWidget {
           foregroundColor: kWhite,
           onPressed: () {
             if (_pageController.page == _lastPageIndex) {
-              //Navigate to a new page
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
             } else {
               // Simulate a swipe to the next page
               _pageController.nextPage(
@@ -39,6 +45,7 @@ class InfoPage extends StatelessWidget {
             }
           },
           child: const Icon(Icons.arrow_forward_sharp)),
+      backgroundColor: Colors.black,
     );
   }
 

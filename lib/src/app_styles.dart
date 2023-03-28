@@ -37,6 +37,11 @@ final kOpenSansBold = GoogleFonts.openSans(
   fontWeight: FontWeight.w700,
 );
 
+final kOpenSansSemiBold = GoogleFonts.openSans(
+  color: kBlack,
+  fontWeight: FontWeight.w600,
+);
+
 final kOpenSansRegular = GoogleFonts.openSans(
   color: kBlack,
   fontWeight: FontWeight.w400,
