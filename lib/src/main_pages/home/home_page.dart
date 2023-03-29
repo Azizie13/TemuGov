@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             ),
             child: CircleAvatar(
               maxRadius: 25,
-              backgroundColor: Colors.black,
+              backgroundColor: kBlack,
               child: IconButton(
                 onPressed: onPressed,
                 icon: Icon(icon),
@@ -94,19 +94,36 @@ class HomePage extends StatelessWidget {
           ),
         ),
         Container(
+          height: 32,
+          width: 270,
           decoration: BoxDecoration(
-              color: bannerColor, borderRadius: BorderRadius.circular(60.0)),
+              color: bannerColor,
+              borderRadius: BorderRadius.circular(60.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(4, 4),
+                ),
+              ]),
           padding: const EdgeInsets.all(10.0),
           child: Positioned(
             height: 10.0,
-            child: Text(
-              name,
-              style: kMontBold.copyWith(fontSize: 10, color: kWhite),
+            child: Center(
+              child: Text(
+                name,
+                style: kMontBold.copyWith(fontSize: 9, color: kWhite),
+              ),
             ),
           ),
         ),
-        const CircleAvatar(
-          backgroundColor: kPurple,
+        const Positioned(
+          left: 30,
+          child: CircleAvatar(
+            backgroundColor: kBlack,
+            radius: 25,
+          ),
         ),
       ],
     );
@@ -181,16 +198,16 @@ class HomePage extends StatelessWidget {
           agencyAppoinmentSelector(
               context,
               Colors.purple,
-              Colors.black,
+              kBlack,
               ["Dentistry", "Pregnancy", "Dermatologist", "More"],
               "KEMENTERIAN KESIHATAN MALAYSIA"),
           agencyAppoinmentSelector(
               context,
               Colors.pink,
-              Colors.black,
+              kBlack,
               ["JPJ", "License Renewal", "Logistic", "More"],
               "KEMENTERIAN PENGANGKUTAN MALAYSIA"),
-          agencyAppoinmentSelector(context, Colors.yellow, Colors.black,
+          agencyAppoinmentSelector(context, Colors.yellow, kBlack,
               ["IC", "Passport", "VISA", "More"], "KEMENTERIAN DALAM NEGERI"),
         ]),
       ),
