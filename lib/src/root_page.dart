@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/main_pages/home/camera_page.dart';
 import 'package:temugov_dev/src/main_pages/home/home_page.dart';
 import 'package:temugov_dev/src/main_pages/home/profile_page.dart';
@@ -25,6 +26,7 @@ class _RootPageState extends State<RootPage> {
           decoration: backgroundGradient(),
           child: pages[currentPage]),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: kWhite,
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: "HOME"),
           NavigationDestination(icon: Icon(Icons.camera), label: "CAMERA"),

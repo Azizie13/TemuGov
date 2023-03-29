@@ -104,7 +104,10 @@ class HomePage extends StatelessWidget {
               style: kMontBold.copyWith(fontSize: 10, color: kWhite),
             ),
           ),
-        )
+        ),
+        const CircleAvatar(
+          backgroundColor: kPurple,
+        ),
       ],
     );
   }
