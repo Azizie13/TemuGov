@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -181,7 +182,10 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _buildIcon(Icons.supervisor_account, "HelperBot", () {}),
-                    _buildIcon(Icons.settings, "Settings", () {}),
+                    _buildIcon(Icons.settings, "Settings", () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SettingPage()));
+                    }),
                     _buildIcon(Icons.more_horiz_sharp, "More", () {})
                   ],
                 ),
