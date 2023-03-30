@@ -32,6 +32,11 @@ final kMontMedium = GoogleFonts.montserrat(
   fontWeight: FontWeight.w500,
 );
 
+final kOpenSansExtraBold = GoogleFonts.openSans(
+  color: kBlack,
+  fontWeight: FontWeight.w800,
+);
+
 final kOpenSansBold = GoogleFonts.openSans(
   color: kBlack,
   fontWeight: FontWeight.w700,

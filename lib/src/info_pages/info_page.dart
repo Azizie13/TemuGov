@@ -7,28 +7,18 @@ class InfoPage extends StatelessWidget {
   InfoPage({super.key});
 
   final PageController _pageController = PageController(initialPage: 0);
-  final int _lastPageIndex = 2;
+  final int _lastPageIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        physics: const BouncingScrollPhysics(),
+        physics: const ScrollPhysics(),
         children: [
           firstPage(),
           secondPage(),
-          Container(
-            color: Colors.black,
-          ),
         ],
-        onPageChanged: (pageIndex) => {
-          if (pageIndex == _lastPageIndex)
-            {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const LoginPage()))
-            }
-        },
       ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: kPurple,

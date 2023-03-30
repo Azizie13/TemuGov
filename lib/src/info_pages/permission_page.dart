@@ -15,7 +15,7 @@ class PermissionPage extends StatelessWidget {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        physics: const BouncingScrollPhysics(),
+        physics: const ScrollPhysics(),
         children: [
           firstPage(context),
           secondPage(context),
