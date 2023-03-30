@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/main_pages/utils/dependent_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/todo_page.dart';
 
@@ -178,7 +179,10 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildIcon(Icons.supervisor_account, "Dependents", () {}),
+                    _buildIcon(Icons.supervisor_account, "Dependents", () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DependentPage()));
+                    }),
                     _buildIcon(Icons.settings, "Settings", () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SettingPage()));

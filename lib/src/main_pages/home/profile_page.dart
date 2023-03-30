@@ -48,14 +48,14 @@ class _ProfilePageState extends State<ProfilePage> {
       Padding(
         padding: const EdgeInsets.all(5.0),
         child: Text(
-          "James Moriarty",
+          "James#4107",
           style: kOpenSansBold.copyWith(fontSize: 16),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 0.0, bottom: 10.0),
         child: Text(
-          "010105-01-1234",
+          "TemuGOV ID",
           style: kOpenSansBold.copyWith(fontSize: 16, color: Colors.grey),
         ),
       ),
@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding:
                     const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
                 child: Text(
-                  "TemuGOV ID",
+                  "Full Name",
                   style:
                       kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
                 ),
@@ -87,6 +87,29 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
                     "2020846896",
+                    style: kOpenSansBold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
+                child: Text(
+                  "IC",
+                  style:
+                      kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 21.0, right: 21.0),
+                width: double.infinity,
+                height: 23,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0), color: kWhite),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    "010123-03-1234",
                     style: kOpenSansBold,
                   ),
                 ),
@@ -155,40 +178,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         color: kWhite),
-                    child: Center(
-                      child: Text(
-                        "M",
-                        style: kOpenSansBold.copyWith(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
-                    child: Text(
-                      "Profile Status : ",
-                      style: kOpenSansExtraBold.copyWith(
-                          fontSize: 15, color: kWhite),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                    width: 90,
-                    height: 25,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: kWhite),
-                    child: Center(
-                      child: Text(
-                        "Inactive",
-                        style: kOpenSansBold.copyWith(
-                            fontSize: 16, color: Colors.redAccent),
-                      ),
-                    ),
+                    child: const Center(child: Icon(Icons.person)),
                   ),
                 ],
               ),
