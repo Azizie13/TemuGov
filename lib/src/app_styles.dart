@@ -51,3 +51,12 @@ final kOpenSansRegular = GoogleFonts.openSans(
   color: kBlack,
   fontWeight: FontWeight.w400,
 );
+
+final kBoxShadow = [
+  BoxShadow(
+    color: Colors.grey.withOpacity(0.5),
+    spreadRadius: 1,
+    blurRadius: 2,
+    offset: const Offset(4, 4),
+  ),
+];

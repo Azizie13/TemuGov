@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
+import 'package:temugov_dev/src/main_pages/utils/todo_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -100,14 +101,7 @@ class HomePage extends StatelessWidget {
           decoration: BoxDecoration(
               color: bannerColor,
               borderRadius: BorderRadius.circular(60.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 2,
-                  offset: const Offset(4, 4),
-                ),
-              ]),
+              boxShadow: kBoxShadow),
           padding: const EdgeInsets.all(10.0),
           child: Positioned(
             height: 10.0,
@@ -151,7 +145,10 @@ class HomePage extends StatelessWidget {
                 width: 52,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ToDoPage()));
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: kPurple,
                     foregroundColor: kWhite,
@@ -181,7 +178,7 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildIcon(Icons.supervisor_account, "HelperBot", () {}),
+                    _buildIcon(Icons.supervisor_account, "Dependents", () {}),
                     _buildIcon(Icons.settings, "Settings", () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SettingPage()));

@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:temugov_dev/src/app_styles.dart';
 
 class CameraPage extends StatelessWidget {
   const CameraPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: double.infinity,
-        width: double.infinity,
-        // padding: const EdgeInsets.all(0.0),
-        // margin: const EdgeInsets.all(0.0),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/lake.jpg"), fit: BoxFit.contain),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          backgroundColor: kPurple,
+          title: const Text(
+            "Camera",
+          ),
+          titleTextStyle: kMontExtraBold.copyWith(fontSize: 24, color: kWhite),
+          foregroundColor: kWhite,
         ),
-        child: const Center(child: Text('Scan here')));
+        Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 150),
+            child: Image.asset('assets/images/Camera.png')),
+      ],
+    );
   }
 }
