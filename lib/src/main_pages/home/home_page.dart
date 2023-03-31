@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_mng_page.dart';
+import 'package:temugov_dev/src/main_pages/utils/appointment_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/dependent_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/todo_page.dart';
@@ -84,12 +85,20 @@ class HomePage extends StatelessWidget {
                       appointments[index],
                       style: kOpenSansBold.copyWith(fontSize: 10.0),
                     ),
-                    Container(
-                      width: 55,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: kWhite,
-                          borderRadius: BorderRadius.circular(10.0)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AppointPage(
+                                  appointmentName: appointments[index],
+                                )));
+                      },
+                      child: Container(
+                        width: 55,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: kWhite,
+                            borderRadius: BorderRadius.circular(10.0)),
+                      ),
                     )
                   ],
                 ),

@@ -6,6 +6,7 @@ const Color kBlack = Color(0xFF1B1D1D);
 
 const Color kPurple = Color(0xFF383277);
 const Color kLightPurple = Color(0xFF6E3BFF);
+const Color kLighterPurple = Color(0xFFD7D7FF);
 
 const Color kGradient1 = Color(0xFFEBF5FF);
 const Color kGradient2 = Color(0xFF61BED5);
