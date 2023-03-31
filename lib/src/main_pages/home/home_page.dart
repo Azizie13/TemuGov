@@ -3,6 +3,7 @@ import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_mng_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/dependent_page.dart';
+import 'package:temugov_dev/src/main_pages/utils/faq_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/todo_page.dart';
 
@@ -184,7 +185,10 @@ class HomePage extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => AppointManagePage()));
                     }),
-                    _buildIcon(Icons.question_mark_sharp, "FAQ", () {}),
+                    _buildIcon(Icons.question_mark_sharp, "FAQ", () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => FAQPage()));
+                    }),
                     _buildIcon(Icons.chat, "HelperBot", () {}),
                   ],
                 ),
