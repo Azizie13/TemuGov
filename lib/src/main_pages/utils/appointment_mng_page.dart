@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
 
@@ -59,6 +60,13 @@ class AppointManagePage extends StatelessWidget {
     "Hospital Shah Alam",
   ];
 
+  final List<MaterialColor> appointmentColors = [
+    Colors.pink,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+  ];
+
   Padding _buildSettings() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
@@ -78,18 +86,31 @@ class AppointManagePage extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
+                      width: 80,
+                      height: 80,
                       decoration: BoxDecoration(
+                          color: appointmentColors[index % 4],
                           boxShadow: kBoxShadow,
                           borderRadius: BorderRadius.circular(18)),
-                      child: Column(
-                        children: [
-                          Text(appointmentsDates[index].day.toString()),
-                          Text(appointmentsDates[index].month.toString()),
-                        ],
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              appointmentsDates[index].day.toString(),
+                              style: kOpenSansBold.copyWith(fontSize: 20),
+                            ),
+                            Text(
+                              DateFormat('MMM')
+                                  .format(appointmentsDates[index]),
+                              style: kOpenSansBold.copyWith(fontSize: 20),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(30.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -109,7 +130,7 @@ class AppointManagePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      width: 80,
+                      width: 35,
                     ),
                     const Icon(
                       Icons.list,
