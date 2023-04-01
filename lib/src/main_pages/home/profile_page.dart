@@ -68,98 +68,10 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
-                child: Text(
-                  "Full Name",
-                  style:
-                      kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 21.0, right: 21.0),
-                width: double.infinity,
-                height: 23,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0), color: kWhite),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "2020846896",
-                    style: kOpenSansBold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
-                child: Text(
-                  "IC",
-                  style:
-                      kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 21.0, right: 21.0),
-                width: double.infinity,
-                height: 23,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0), color: kWhite),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "010123-03-1234",
-                    style: kOpenSansBold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
-                child: Text(
-                  "E-mail",
-                  style:
-                      kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 21.0, right: 21.0),
-                width: double.infinity,
-                height: 23,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0), color: kWhite),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "test_email@gmail.com",
-                    style: kOpenSansBold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
-                child: Text(
-                  "Phone Number",
-                  style:
-                      kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 21.0, right: 21.0),
-                width: double.infinity,
-                height: 23,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0), color: kWhite),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    "+601733434567",
-                    style: kOpenSansBold,
-                  ),
-                ),
-              ),
+              ..._buildInfo("Full Name", "James Bond"),
+              ..._buildInfo("IC", "010123-03-1234"),
+              ..._buildInfo("E-mail", "test_email@gmail.com"),
+              ..._buildInfo("Phone Number", "+601733434567"),
               Row(
                 children: [
                   Padding(
@@ -222,5 +134,31 @@ class _ProfilePageState extends State<ProfilePage> {
             ]),
       ),
     ]);
+  }
+
+  List<Widget> _buildInfo(String label, String info) {
+    return [
+      Padding(
+        padding: const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
+        child: Text(
+          label,
+          style: kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.only(left: 21.0, right: 21.0),
+        width: double.infinity,
+        height: 23,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0), color: kWhite),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text(
+            info,
+            style: kOpenSansBold,
+          ),
+        ),
+      ),
+    ];
   }
 }
