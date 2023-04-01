@@ -23,7 +23,7 @@ class PermissionPage extends StatelessWidget {
         onPageChanged: (pageIndex) => {
           if (pageIndex == _lastPageIndex)
             {
-              //Navigate to a new page
+              //Do nothing for now
             }
         },
       ),
@@ -92,13 +92,13 @@ class PermissionPage extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(top: 25, bottom: 10.0),
                 child: _buildButton("Turn On Location", () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const RootPage()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => RootPage()));
                 })),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const RootPage()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => RootPage()));
                 },
                 child: Text(
                   "Skip for now",
@@ -175,13 +175,13 @@ class PermissionPage extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(top: 25, bottom: 10.0),
                 child: _buildButton("Turn On Notification", () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const RootPage()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => RootPage()));
                 })),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const RootPage()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => RootPage()));
                 },
                 child: Text(
                   "Skip for now",

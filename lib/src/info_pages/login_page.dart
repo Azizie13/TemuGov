@@ -3,6 +3,8 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
 import 'package:temugov_dev/src/info_pages/register_page.dart';
+import 'package:temugov_dev/src/main_pages/guest/root_page_guest.dart';
+import 'package:temugov_dev/src/root_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -37,7 +39,11 @@ class LoginPage extends StatelessWidget {
                 _buildTextInput("PASSWORD", obsecureText: true),
                 TextButton(
                     onPressed: () {
-                      debugPrint("Text pressed");
+                      bool isGuest = true;
+                      //Navigate to guest mode
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const RegisterPage(),
+                      ));
                     },
                     child: Text(
                       "Don't have an account? Sign Up",
@@ -51,8 +57,8 @@ class LoginPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const RegisterPage()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => RootPage()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: kPurple,
@@ -98,7 +104,10 @@ class LoginPage extends StatelessWidget {
                       SignInButtonBuilder(
                         text: 'Continue as guest',
                         icon: Icons.supervised_user_circle,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const RootPageGuest()));
+                        },
                         backgroundColor: kBlack,
                       ),
                     ],

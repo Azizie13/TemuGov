@@ -3,8 +3,6 @@ import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/size_config.dart';
 import 'package:temugov_dev/src/user_data.dart';
 
-final UserData user = UserData();
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -14,6 +12,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool isAgreed = false;
+  final UserData user = UserData();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +21,8 @@ class _ProfilePageState extends State<ProfilePage> {
     user.email = 'test_email@gmail.com';
     user.phoneNumber = '+60171234567';
     user.gender = 'm';
+    user.userName = 'James';
+    user.userUID = 4107;
 
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       AppBar(
@@ -57,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
       Padding(
         padding: const EdgeInsets.all(5.0),
         child: Text(
-          user.temuGovID,
+          user.getTemuGovID(),
           style: kOpenSansBold.copyWith(fontSize: 16),
         ),
       ),

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/decoration/background.dart';
+import 'package:temugov_dev/src/decoration/overlay_widget.dart';
 import 'package:temugov_dev/src/main_pages/home/chatbot_page.dart';
 import 'package:temugov_dev/src/main_pages/home/home_page.dart';
 import 'package:temugov_dev/src/main_pages/home/profile_page.dart';
 
-import 'decoration/background.dart';
-
-class RootPage extends StatefulWidget {
-  RootPage({super.key});
+class RootPageGuest extends StatefulWidget {
+  const RootPageGuest({super.key});
 
   @override
-  State<RootPage> createState() => _RootPageState();
+  State<RootPageGuest> createState() => _RootPageGuestState();
 }
 
-class _RootPageState extends State<RootPage> {
+class _RootPageGuestState extends State<RootPageGuest> {
   int currentPage = 0;
-  bool isGuest = false;
+  bool isGuest = true;
 
-  List<Widget?> pages = [const HomePage(), null, ProfilePage()];
+  List<Widget?> pages = [const HomePage(), null, null];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,13 @@ class _RootPageState extends State<RootPage> {
             debugPrint('$isGuest');
 
             if (isGuest == true) {
-              //Pass
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const OverlayWidget(
+                    child: Text('THIS'),
+                  );
+                },
+              ));
             }
 
             if (index == 1) {

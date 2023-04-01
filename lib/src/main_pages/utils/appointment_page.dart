@@ -3,6 +3,7 @@ import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
 import 'package:temugov_dev/src/main_pages/home/profile_page.dart';
 import 'package:temugov_dev/src/root_page.dart';
+import 'package:temugov_dev/src/user_data.dart';
 
 class AppointPage extends StatefulWidget {
   const AppointPage({
@@ -21,6 +22,8 @@ class AppointPage extends StatefulWidget {
 class _AppointPageState extends State<AppointPage> {
   static const int maxSteps = 4;
 
+  final UserData user = UserData();
+
   double progressValue = 100 / maxSteps;
   int currentSteps = 1;
   bool isPM = true;
@@ -29,6 +32,14 @@ class _AppointPageState extends State<AppointPage> {
 
   @override
   Widget build(BuildContext context) {
+    user.fullName = 'James Bond';
+    user.icNumber = '010123-10-1234';
+    user.email = 'test_email@gmail.com';
+    user.phoneNumber = '+60171234567';
+    user.gender = 'm';
+    user.userName = 'James';
+    user.userUID = 4107;
+
     List<List<Widget>> steps = [
       stepOne(),
       stepTwo(),
@@ -95,7 +106,7 @@ class _AppointPageState extends State<AppointPage> {
                 progressValue = 100;
                 currentSteps = 4;
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const RootPage()));
+                    MaterialPageRoute(builder: (context) => RootPage()));
               }
             });
           },

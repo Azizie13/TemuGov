@@ -8,7 +8,9 @@ class UserData {
   late String userName;
   late int userUID;
 
-  late String temuGovID = "$userName#$userUID";
+  String getTemuGovID() {
+    return "$userName#$userUID";
+  }
 
   late bool hasAgreed = false;
 }
