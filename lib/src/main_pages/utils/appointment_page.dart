@@ -22,6 +22,8 @@ class _AppointPageState extends State<AppointPage> {
   double progressValue = 100 / maxSteps;
   int currentSteps = 1;
 
+  DateTime date = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     List<List<Widget>> steps = [
@@ -202,7 +204,45 @@ class _AppointPageState extends State<AppointPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ..._buildInfo("Select date", "James Bond"),
+                  ..._buildInfo("Date of appointment",
+                      "${date.day}/${date.month}/${date.year}"),
+                  Align(
+                    alignment: Alignment.center,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: kLightPurple,
+                            foregroundColor: kWhite),
+                        onPressed: () async {
+                          DateTime? newDate = await showDatePicker(
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData().copyWith(
+                                      colorScheme: ColorScheme.fromSeed(
+                                          seedColor: Colors.deepPurple)),
+                                  child: Container(
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              context: context,
+                              initialDate: date,
+                              firstDate: date,
+                              lastDate: DateTime(2024));
+
+                          if (newDate == null) {
+                            return;
+                          }
+
+                          setState(() {
+                            date = newDate;
+                          });
+                        },
+                        child: Text(
+                          'Select Date',
+                          style: kOpenSansExtraBold.copyWith(
+                              fontSize: 15, color: kWhite),
+                        )),
+                  ),
                   ..._buildInfo("Time", "James Bond"),
                   const SizedBox(
                     height: 40,
