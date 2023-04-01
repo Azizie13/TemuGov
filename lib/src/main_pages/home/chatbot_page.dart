@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
@@ -23,7 +22,7 @@ class _ChatPageState extends State<ChatPage> {
     _textController.clear();
     setState(() {
       _messages.add(text);
-      _messages.add("Helperbot: Understood, I'll get right to it.");
+      _messages.add("Understood, I'll get right to it.");
     });
   }
 

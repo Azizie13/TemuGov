@@ -36,7 +36,10 @@ class FastLanePage extends StatelessWidget {
           height: 340,
           margin: const EdgeInsets.symmetric(vertical: 28, horizontal: 50),
           decoration: BoxDecoration(
-              color: kPurple, borderRadius: BorderRadius.circular(40.0)),
+              borderRadius: BorderRadius.circular(40.0),
+              image: const DecorationImage(
+                  image: AssetImage('assets/images/price.png'),
+                  fit: BoxFit.cover)),
         ),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
