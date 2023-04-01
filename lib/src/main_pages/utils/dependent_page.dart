@@ -23,17 +23,15 @@ class DependentPage extends StatelessWidget {
           width: double.infinity,
           decoration: backgroundGradient(),
           child: SafeArea(child: _buildSettings())),
-      floatingActionButton: Align(
-        alignment: Alignment.bottomCenter,
-        child: FloatingActionButton(
-          tooltip: 'Add new dependents',
-          backgroundColor: kPurple,
-          foregroundColor: kWhite,
-          onPressed: () {
-            debugPrint("Add new dependents.");
-          },
-          child: const Icon(Icons.add),
-        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add new dependents',
+        backgroundColor: kPurple,
+        foregroundColor: kWhite,
+        onPressed: () {
+          debugPrint("Add new dependents.");
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

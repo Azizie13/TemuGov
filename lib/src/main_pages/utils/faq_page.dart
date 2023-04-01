@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/decoration/background.dart';
 
 class FAQPage extends StatefulWidget {
   const FAQPage({Key? key}) : super(key: key);
@@ -13,17 +14,17 @@ class _FAQPageState extends State<FAQPage> {
     Item(
       question: 'What is TemuGOV?',
       answer:
-          'Flutter is a mobile app SDK for building high-performance, high-fidelity, apps for iOS, Android, web, and desktop from a single codebase.',
+          "TemuGOV is an all-in-one appointment making app for government services. With TemuGOV, you can easily schedule appointments for a wide range of government services, all from one convenient platform. Whether you need to renew your passport, apply for a driver's license, or schedule a meeting with a government official, TemuGOV makes it easy and convenient to get the services you need. Say goodbye to long lines, and hello to the future of government service!",
     ),
     Item(
       question: 'What are the advantages of using TemuGOV?',
       answer:
-          'Some advantages of using Flutter are: fast development, expressive and flexible UI, native performance, and a single codebase for multiple platforms.',
+          "TemuGov offers a number of advantages for users who need to access government services:\n\nConvenience: With TemuGov, you can schedule appointments for a wide range of government services from one centralized platform, saving you time and hassle.\n\n...",
     ),
     Item(
       question: 'Is TemuGOV free?',
       answer:
-          'Yes, Flutter is an open-source framework and is free to use, even for commercial projects.',
+          'While most features of TemuGOV are free to use, there are some features that require an in-app purchase, such as the Fast Queue feature. So while the app itself is free to download and use, some of its more advanced features may require payment.',
     ),
   ];
 
@@ -40,27 +41,32 @@ class _FAQPageState extends State<FAQPage> {
         titleTextStyle: kMontExtraBold.copyWith(fontSize: 24, color: kWhite),
         foregroundColor: kWhite,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: ExpansionPanelList(
-            expansionCallback: (int index, bool isExpanded) {
-              setState(() {
-                _items[index].isExpanded = !isExpanded;
-              });
-            },
-            children: _items.map<ExpansionPanel>((Item item) {
-              return ExpansionPanel(
-                headerBuilder: (BuildContext context, bool isExpanded) {
-                  return ListTile(
-                    title: Text(item.question),
-                  );
-                },
-                body: ListTile(
-                  title: Text(item.answer),
-                ),
-                isExpanded: item.isExpanded,
-              );
-            }).toList(),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: backgroundGradient(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: ExpansionPanelList(
+              expansionCallback: (int index, bool isExpanded) {
+                setState(() {
+                  _items[index].isExpanded = !isExpanded;
+                });
+              },
+              children: _items.map<ExpansionPanel>((Item item) {
+                return ExpansionPanel(
+                  headerBuilder: (BuildContext context, bool isExpanded) {
+                    return ListTile(
+                      title: Text(item.question),
+                    );
+                  },
+                  body: ListTile(
+                    title: Text(item.answer),
+                  ),
+                  isExpanded: item.isExpanded,
+                );
+              }).toList(),
+            ),
           ),
         ),
       ),
