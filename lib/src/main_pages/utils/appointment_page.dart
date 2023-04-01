@@ -63,7 +63,19 @@ class _AppointPageState extends State<AppointPage> {
                 decoration: BoxDecoration(
                     color: kPurple, borderRadius: BorderRadius.circular(40.0)),
                 width: 340,
-                height: 390,
+                constraints: const BoxConstraints(maxHeight: double.infinity),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ..._buildInfo("Full Name", "James Bond"),
+                      ..._buildInfo("IC Number", "James Bond"),
+                      ..._buildInfo("E-mail", "James Bond"),
+                      ..._buildInfo("Phone Number", "James Bond"),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                    ]),
               ),
             ],
           ))),
@@ -89,5 +101,31 @@ class _AppointPageState extends State<AppointPage> {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildInfo(String label, String info) {
+    return [
+      Padding(
+        padding: const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
+        child: Text(
+          label,
+          style: kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.only(left: 21.0, right: 21.0),
+        width: double.infinity,
+        height: 23,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0), color: kWhite),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text(
+            info,
+            style: kOpenSansBold,
+          ),
+        ),
+      ),
+    ];
   }
 }
