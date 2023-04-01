@@ -91,7 +91,8 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => AppointPage(
-                                  appointmentName: appointments[index],
+                                  appointmentName: name,
+                                  appointmentCategory: appointments[index],
                                 )));
                       },
                       child: Container(
@@ -187,12 +188,12 @@ class HomePage extends StatelessWidget {
                           builder: (context) => AppointManagePage()));
                     }),
                     _buildIcon(Icons.question_mark_sharp, "FAQ", () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => FAQPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const FAQPage()));
                     }),
                     _buildIcon(Icons.chat, "HelperBot", () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => ChatPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ChatPage()));
                     }),
                   ],
                 ),
