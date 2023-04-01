@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
+import 'package:temugov_dev/src/main_pages/home/home_page.dart';
+import 'package:temugov_dev/src/root_page.dart';
 
 class AppointPage extends StatefulWidget {
   const AppointPage({
@@ -21,6 +23,7 @@ class _AppointPageState extends State<AppointPage> {
 
   double progressValue = 100 / maxSteps;
   int currentSteps = 1;
+  bool isPM = true;
 
   DateTime date = DateTime.now();
 
@@ -88,9 +91,11 @@ class _AppointPageState extends State<AppointPage> {
               progressValue += 25;
               currentSteps += 1;
 
-              if (progressValue > 100) {
+              if (progressValue > 100 && currentSteps > 4) {
                 progressValue = 100;
                 currentSteps = 4;
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const RootPage()));
               }
             });
           },
@@ -204,7 +209,7 @@ class _AppointPageState extends State<AppointPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ..._buildInfo("Date of appointment",
+                  ..._buildInfo("Date of appointment :",
                       "${date.day}/${date.month}/${date.year}"),
                   Align(
                     alignment: Alignment.center,
@@ -243,15 +248,102 @@ class _AppointPageState extends State<AppointPage> {
                               fontSize: 15, color: kWhite),
                         )),
                   ),
-                  ..._buildInfo("Time", "James Bond"),
-                  const SizedBox(
-                    height: 40,
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 21.0, top: 19.0, bottom: 9),
+                          child: Text(
+                            'Time Range : ',
+                            style: kOpenSansExtraBold.copyWith(
+                                fontSize: 15, color: kWhite),
+                          ),
+                        ),
+                        Switch(
+                          activeTrackColor: Colors.white,
+                          inactiveTrackColor: Colors.white,
+                          activeColor: kLightPurple,
+                          inactiveThumbColor: kLightPurple,
+                          value: isPM,
+                          onChanged: (value) {
+                            setState(() {
+                              isPM = !isPM;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: isPM ? kWhite.withOpacity(0.25) : kLightPurple,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          'AM',
+                          style: kOpenSansExtraBold.copyWith(fontSize: 16),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: isPM ? kLightPurple : kWhite.withOpacity(0.25),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          'PM',
+                          style: kOpenSansExtraBold.copyWith(fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        2,
+                        (i) => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                              3,
+                              (j) => _buildTimeSlotContainer(isPM
+                                  ? timeSlotsPM[i * 3 + j]
+                                  : timeSlotsAM[i * 3 + j])),
+                        ),
+                      ),
+                    ),
                   ),
                 ]),
           ),
         ],
       )
     ];
+  }
+
+  Container _buildTimeSlotContainer(TimeSlot time) {
+    return Container(
+      margin: const EdgeInsets.all(9.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+      decoration: BoxDecoration(
+          color: time.isBooked ? Colors.red : Colors.lightGreen,
+          borderRadius: BorderRadius.circular(8.0)),
+      child: Text(
+        time.time,
+        style: kOpenSansExtraBold.copyWith(fontSize: 14),
+      ),
+    );
   }
 
   List<Widget> stepFour() {
@@ -276,13 +368,34 @@ class _AppointPageState extends State<AppointPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ..._buildInfo("TemuGOV ID:", "James#4107"),
-                  ..._buildInfo("Full Name", "James Bond"),
-                  ..._buildInfo("Date of", "Implement here"),
-                  ..._buildInfo("Appointment ID", "ABC123EFG456"),
-                  ..._buildInfo("Time Slot", "10.30 PM"),
-                  ..._buildInfo("Gov. Agency", "LHDN"),
-                  ..._buildInfo("Branch", "KL (Jalan Duta)"),
-                  ..._buildInfo("Category", "Dentistry"),
+                  ..._buildInfo("Full Name :", "James Bond"),
+                  ..._buildInfo("IC Number :", "010101-10-1234"),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
+                    child: Text(
+                      "Date of :-",
+                      style: kOpenSansExtraBold.copyWith(
+                          fontSize: 15, color: kWhite),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildInfoColumn("Appointment : ", "01/01/23"),
+                      _buildInfoColumn("Application : ", "07/07/07"),
+                    ],
+                  ),
+                  ..._buildInfo("Appointment ID : ", "ABC01234567890"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildInfoColumn("Time slot : ", "10:30PM"),
+                      _buildInfoColumn("Gov. Agency : ", "KKM"),
+                      _buildInfoColumn("Category : ", "Dentistry"),
+                    ],
+                  ),
+                  ..._buildInfo("Branch : ", "KL (Jalan Duta)"),
                   const SizedBox(
                     height: 40,
                   ),
@@ -292,32 +405,58 @@ class _AppointPageState extends State<AppointPage> {
       )
     ];
   }
+}
 
-  List<Widget> _buildInfo(String label, String info) {
-    return [
-      Padding(
-        padding: const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
+List<Widget> _buildInfo(String label, String info) {
+  return [
+    Padding(
+      padding: const EdgeInsets.only(left: 21.0, top: 19.0, bottom: 9),
+      child: Text(
+        label,
+        style: kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
+      ),
+    ),
+    Container(
+      margin: const EdgeInsets.only(left: 21.0, right: 21.0),
+      width: double.infinity,
+      height: 23,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0), color: kWhite),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Text(
-          label,
-          style: kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
+          info,
+          style: kOpenSansBold,
         ),
       ),
-      Container(
-        margin: const EdgeInsets.only(left: 21.0, right: 21.0),
-        width: double.infinity,
-        height: 23,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0), color: kWhite),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Text(
-            info,
-            style: kOpenSansBold,
-          ),
+    ),
+  ];
+}
+
+Widget _buildInfoColumn(String label, String info) {
+  return Column(children: [
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Text(
+        label,
+        style: kOpenSansExtraBold.copyWith(fontSize: 15, color: kWhite),
+      ),
+    ),
+    Container(
+      margin: const EdgeInsets.only(left: 2.0, right: 2.0),
+      width: 70,
+      height: 20,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0), color: kWhite),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          info,
+          style: kOpenSansBold.copyWith(fontSize: 13),
         ),
       ),
-    ];
-  }
+    ),
+  ]);
 }
 
 List<Widget> _buildInfoWithIcon(String label, String info, IconData icon) {
@@ -398,3 +537,28 @@ List<Widget> _buildDropDown(String label, String info) {
     ),
   ];
 }
+
+class TimeSlot {
+  final String time;
+  final bool isBooked;
+
+  TimeSlot(this.time, this.isBooked);
+}
+
+List<TimeSlot> timeSlotsAM = [
+  TimeSlot('09:00', true),
+  TimeSlot('09:30', false),
+  TimeSlot('10:00', true),
+  TimeSlot('10:30', false),
+  TimeSlot('11:00', true),
+  TimeSlot('11:30', true),
+];
+
+List<TimeSlot> timeSlotsPM = [
+  TimeSlot('12:00', false),
+  TimeSlot('13:00', true),
+  TimeSlot('14:00', true),
+  TimeSlot('15:00', true),
+  TimeSlot('16:00', false),
+  TimeSlot('17:00', false),
+];
