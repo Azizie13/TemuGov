@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
 import 'package:temugov_dev/src/decoration/overlay_widget.dart';
+import 'package:temugov_dev/src/main_pages/guest/home_page_guest.dart';
 import 'package:temugov_dev/src/main_pages/home/chatbot_page.dart';
 import 'package:temugov_dev/src/main_pages/home/home_page.dart';
 import 'package:temugov_dev/src/main_pages/home/profile_page.dart';
@@ -17,7 +18,7 @@ class _RootPageGuestState extends State<RootPageGuest> {
   int currentPage = 0;
   bool isGuest = true;
 
-  List<Widget?> pages = [const HomePage(), null, null];
+  List<Widget?> pages = [const HomePageGuest(), null, null];
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +37,31 @@ class _RootPageGuestState extends State<RootPageGuest> {
         ],
         onDestinationSelected: (int index) {
           setState(() {
-            currentPage = index;
+            currentPage = 0;
             debugPrint('$isGuest');
 
             if (isGuest == true) {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
-                  return const OverlayWidget(
-                    child: Text('THIS'),
+                  return OverlayWidget(
+                    child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Please sign up to unlock this feature.',
+                          style: kMontMedium.copyWith(
+                            fontSize: 20,
+                            color: kWhite,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
                   );
                 },
               ));
             }
-
-            if (index == 1) {
-              currentPage = 0;
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const ChatPage()));
-            }
           });
         },
-        selectedIndex: currentPage,
+        selectedIndex: 0,
       ),
     );
   }

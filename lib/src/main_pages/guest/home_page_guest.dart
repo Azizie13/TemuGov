@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
+import 'package:temugov_dev/src/decoration/overlay_widget.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_mng_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_page.dart';
 import 'package:temugov_dev/src/main_pages/home/chatbot_page.dart';
@@ -10,8 +11,8 @@ import 'package:temugov_dev/src/main_pages/utils/news_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/todo_page.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePageGuest extends StatelessWidget {
+  const HomePageGuest({super.key});
 
   Widget _buildIcon(IconData icon, String text, void Function()? onPressed) {
     return Container(
@@ -97,11 +98,28 @@ class HomePage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => AppointPage(
+                        //           appointmentName: agencyName,
+                        //           appointmentCategory: appointments[index],
+                        //         )));
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => AppointPage(
-                                  appointmentName: agencyName,
-                                  appointmentCategory: appointments[index],
-                                )));
+                          builder: (context) {
+                            return OverlayWidget(
+                              child: Container(
+                                  padding: const EdgeInsets.all(5.0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Please sign up to unlock this feature.',
+                                    style: kMontMedium.copyWith(
+                                      fontSize: 20,
+                                      color: kWhite,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )),
+                            );
+                          },
+                        ));
                       },
                       child: Container(
                         width: 55,
@@ -178,7 +196,7 @@ class HomePage extends StatelessWidget {
                 style: kMontExtraBold.copyWith(fontSize: 24),
               ),
               const SizedBox(
-                width: 52,
+                width: 50,
               ),
               ElevatedButton(
                 onPressed: () {
@@ -186,13 +204,13 @@ class HomePage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => ToDoPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: kPurple,
+                    backgroundColor: Colors.deepOrange[900],
                     foregroundColor: kWhite,
                     minimumSize: const Size(95, 30),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40))),
                 child: Text(
-                  "To-do List",
+                  "Guest Mode",
                   style: kMontExtraBold.copyWith(fontSize: 15, color: kWhite),
                 ),
               )
@@ -205,10 +223,6 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildIcon(Icons.calendar_month_sharp, "Appointments", () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AppointManagePage()));
-                    }),
                     _buildIcon(Icons.question_mark_sharp, "FAQ", () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const FAQPage()));
@@ -217,24 +231,19 @@ class HomePage extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const NewsPage()));
                     }),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildIcon(Icons.supervisor_account, "Dependents", () {
+                    _buildIcon(Icons.search, "Search", () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DependentPage()));
+                          builder: (context) => SettingPage()));
                     }),
                     _buildIcon(Icons.settings, "Settings", () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SettingPage()));
                     }),
-                    _buildIcon(Icons.bolt_rounded, "Fast Lane", () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const FastLanePage()));
-                    })
                   ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [],
                 ),
               ],
             ),

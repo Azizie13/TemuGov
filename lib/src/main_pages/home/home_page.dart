@@ -180,22 +180,22 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 width: 52,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ToDoPage()));
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: kPurple,
-                    foregroundColor: kWhite,
-                    minimumSize: const Size(95, 30),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40))),
-                child: Text(
-                  "To-do List",
-                  style: kMontExtraBold.copyWith(fontSize: 15, color: kWhite),
-                ),
-              )
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.of(context).push(
+              //         MaterialPageRoute(builder: (context) => ToDoPage()));
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //       backgroundColor: kPurple,
+              //       foregroundColor: kWhite,
+              //       minimumSize: const Size(95, 30),
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(40))),
+              //   child: Text(
+              //     "To-do List",
+              //     style: kMontExtraBold.copyWith(fontSize: 15, color: kWhite),
+              //   ),
+              // )
             ],
           ),
           Container(
