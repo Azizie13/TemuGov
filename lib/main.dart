@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: const Splash(),
       splashIconSize: double.infinity,
-      duration: 1000,
+      duration: 2000,
       splashTransition: SplashTransition.scaleTransition,
       pageTransitionType: PageTransitionType.topToBottom,
       nextScreen: const LanguageSelectPage(),

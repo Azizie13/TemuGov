@@ -3,9 +3,15 @@ import 'package:intl/intl.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
 
-class AppointManagePage extends StatelessWidget {
+class AppointManagePage extends StatefulWidget {
   AppointManagePage({super.key});
 
+  @override
+  State<AppointManagePage> createState() => _AppointManagePageState();
+}
+
+class _AppointManagePageState extends State<AppointManagePage> {
+  bool isOverlayOpened = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +25,14 @@ class AppointManagePage extends StatelessWidget {
         titleTextStyle: kMontExtraBold.copyWith(fontSize: 24, color: kWhite),
         foregroundColor: kWhite,
       ),
-      body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: backgroundGradient(),
-          child: SafeArea(child: _buildSettings())),
+      body: isOverlayOpened
+          ? Stack(
+              children: [
+                _buildMainBody(),
+                _buildOverlay(),
+              ],
+            )
+          : _buildMainBody(),
       floatingActionButton: Align(
         alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
@@ -37,6 +46,14 @@ class AppointManagePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container _buildMainBody() {
+    return Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: backgroundGradient(),
+        child: SafeArea(child: _buildSettings()));
   }
 
   final List<String> appointmentsNames = [
@@ -75,6 +92,30 @@ class AppointManagePage extends StatelessWidget {
           shrinkWrap: true,
           itemCount: appointmentsNames.length,
           itemBuilder: (context, index) {
+            Widget liveQbutton = const SizedBox(
+              width: 1,
+            );
+
+            if (index == 0) {
+              liveQbutton = ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kLightPurple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    minimumSize: Size(90, 30),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isOverlayOpened = true;
+                    });
+                  },
+                  child: Text(
+                    'Live Queue',
+                    style: kMontBold.copyWith(fontSize: 11, color: kWhite),
+                  ));
+            }
+
             return Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
@@ -126,6 +167,7 @@ class AppointManagePage extends StatelessWidget {
                             appointmentsLocations[index],
                             style: kOpenSansSemiBold.copyWith(fontSize: 14),
                           ),
+                          liveQbutton,
                         ],
                       ),
                     ),
@@ -140,6 +182,116 @@ class AppointManagePage extends StatelessWidget {
                   ],
                 ));
           }),
+    );
+  }
+
+  Widget _buildOverlay() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              isOverlayOpened = false;
+            });
+          },
+          child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.black.withOpacity(0.75)),
+        ),
+        Container(
+          width: 340,
+          height: 360,
+          decoration: BoxDecoration(
+              color: kDeepPurple, borderRadius: BorderRadius.circular(60)),
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 24, bottom: 11),
+                child: Text(
+                  "LIVE QUEUE",
+                  style: kMontBold.copyWith(fontSize: 20, color: kWhite),
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: kDarkPurple,
+                ),
+                width: 260,
+                height: 150,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "YOUR NUMBER",
+                        style: kMontBold.copyWith(fontSize: 20, color: kWhite),
+                      ),
+                    ),
+                    Text(
+                      "089",
+                      style: kMontBold.copyWith(fontSize: 90, color: kWhite),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(5.0),
+                        child: Text(
+                          "CURRENT NUMBER",
+                          style:
+                              kMontBold.copyWith(fontSize: 10, color: kWhite),
+                        ),
+                      ),
+                      Text(
+                        "079",
+                        style: kMontBold.copyWith(fontSize: 48, color: kWhite),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(10.0),
+                    width: 20,
+                    height: 130,
+                    decoration: const BoxDecoration(
+                      color: kDarkPurple,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(5.0),
+                        child: Text(
+                          "WAITING NUMBER",
+                          style:
+                              kMontBold.copyWith(fontSize: 10, color: kWhite),
+                        ),
+                      ),
+                      Text(
+                        "10",
+                        style: kMontBold.copyWith(fontSize: 48, color: kWhite),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(5.0),
+                        child: Text(
+                          "PERSON LEFT",
+                          style: kMontBold.copyWith(fontSize: 8, color: kWhite),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

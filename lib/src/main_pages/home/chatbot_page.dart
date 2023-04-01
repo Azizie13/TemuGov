@@ -34,7 +34,7 @@ class _ChatPageState extends State<ChatPage> {
         centerTitle: true,
         backgroundColor: kPurple,
         title: const Text(
-          "HelperBot",
+          "Chat Bot",
         ),
         titleTextStyle: kMontExtraBold.copyWith(fontSize: 24, color: kWhite),
         foregroundColor: kWhite,

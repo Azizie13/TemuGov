@@ -21,7 +21,10 @@ class NewsPage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: backgroundGradient(),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/iklan-18.png'),
+                fit: BoxFit.cover)),
       ),
     );
   }
