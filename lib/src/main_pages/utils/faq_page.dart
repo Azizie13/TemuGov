@@ -47,25 +47,68 @@ class _FAQPageState extends State<FAQPage> {
         decoration: backgroundGradient(),
         child: SafeArea(
           child: SingleChildScrollView(
-            child: ExpansionPanelList(
-              expansionCallback: (int index, bool isExpanded) {
-                setState(() {
-                  _items[index].isExpanded = !isExpanded;
-                });
-              },
-              children: _items.map<ExpansionPanel>((Item item) {
-                return ExpansionPanel(
-                  headerBuilder: (BuildContext context, bool isExpanded) {
-                    return ListTile(
-                      title: Text(item.question),
-                    );
-                  },
-                  body: ListTile(
-                    title: Text(item.answer),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Frequently Asked Questions",
+                    style: kMontSemiBold.copyWith(fontSize: 24),
                   ),
-                  isExpanded: item.isExpanded,
-                );
-              }).toList(),
+                ),
+                const Divider(color: kBlack, thickness: 3),
+                ExpansionPanelList(
+                  expansionCallback: (int index, bool isExpanded) {
+                    setState(() {
+                      _items[index].isExpanded = !isExpanded;
+                    });
+                  },
+                  children: _items.map<ExpansionPanel>((Item item) {
+                    return ExpansionPanel(
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return ListTile(
+                          title: Text(
+                            item.question,
+                            style: kMontSemiBold,
+                          ),
+                        );
+                      },
+                      body: ListTile(
+                        title: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            item.answer,
+                            style: kMontMedium,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      isExpanded: item.isExpanded,
+                    );
+                  }).toList(),
+                ),
+                const Divider(color: kBlack, thickness: 3),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Still have questions?",
+                    style: kMontSemiBold.copyWith(fontSize: 24),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPurple,
+                    foregroundColor: kWhite,
+                  ),
+                  onPressed: () {
+                    // Do something
+                  },
+                  child: Text('Contact Us'),
+                ),
+              ],
             ),
           ),
         ),
