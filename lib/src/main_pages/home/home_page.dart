@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_mng_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/appointment_page.dart';
-import 'package:temugov_dev/src/main_pages/utils/chatbot_page.dart';
+import 'package:temugov_dev/src/main_pages/home/chatbot_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/dependent_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/faq_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
@@ -52,8 +52,14 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget agencyAppoinmentSelector(BuildContext context, Color? backgroundColor,
-      Color bannerColor, List<String> appointments, String name) {
+  Widget _agencyAppoinmentBuilder(
+      BuildContext context,
+      Color? backgroundColor,
+      Color bannerColor,
+      List<String> appointments,
+      List<String> appointmentsFileNames,
+      String agencyName,
+      String filename) {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -91,7 +97,7 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => AppointPage(
-                                  appointmentName: name,
+                                  appointmentName: agencyName,
                                   appointmentCategory: appointments[index],
                                 )));
                       },
@@ -99,8 +105,15 @@ class HomePage extends StatelessWidget {
                         width: 55,
                         height: 50,
                         decoration: BoxDecoration(
-                            color: kWhite,
-                            borderRadius: BorderRadius.circular(10.0)),
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: AssetImage(
+                              "assets/images/services/${appointmentsFileNames[index]}.png",
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     )
                   ],
@@ -121,18 +134,25 @@ class HomePage extends StatelessWidget {
             height: 10.0,
             child: Center(
               child: Text(
-                name,
+                agencyName,
                 style: kMontBold.copyWith(fontSize: 9, color: kWhite),
               ),
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
           left: 30,
           child: CircleAvatar(
-            backgroundColor: kBlack,
-            radius: 25,
-          ),
+              backgroundColor: kBlack,
+              radius: 25,
+              child: ClipOval(
+                child: Image.asset(
+                  "assets/images/gov_logo/$filename.png",
+                  fit: BoxFit.cover,
+                  width: 45,
+                  height: 45,
+                ),
+              )),
         ),
       ],
     );
@@ -148,8 +168,8 @@ class HomePage extends StatelessWidget {
             children: [
               Image.asset(
                 "assets/images/logo.png",
-                width: 56,
-                height: 56,
+                width: 60,
+                height: 60,
               ),
               Text(
                 "TemuGOV",
@@ -191,7 +211,7 @@ class HomePage extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const FAQPage()));
                     }),
-                    _buildIcon(Icons.chat, "HelperBot", () {
+                    _buildIcon(Icons.chat, "News", () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const ChatPage()));
                     }),
@@ -208,7 +228,10 @@ class HomePage extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SettingPage()));
                     }),
-                    _buildIcon(Icons.more_horiz_sharp, "More", () {})
+                    _buildIcon(Icons.more_horiz_sharp, "Fast Lane", () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SettingPage()));
+                    })
                   ],
                 ),
               ],
@@ -221,20 +244,30 @@ class HomePage extends StatelessWidget {
               style: kMontExtraBold.copyWith(fontSize: 17),
             ),
           ),
-          agencyAppoinmentSelector(
+          _agencyAppoinmentBuilder(
               context,
               Colors.purple,
               kBlack,
               ["Dentistry", "Pregnancy", "Dermatologist", "More"],
-              "KEMENTERIAN KESIHATAN MALAYSIA"),
-          agencyAppoinmentSelector(
+              ["dentistry", "pregnancy", "dermatologist", "arrow_right"],
+              "KEMENTERIAN KESIHATAN MALAYSIA",
+              'KKM'),
+          _agencyAppoinmentBuilder(
               context,
               Colors.pink,
               kBlack,
               ["JPJ", "License Renewal", "Logistic", "More"],
-              "KEMENTERIAN PENGANGKUTAN MALAYSIA"),
-          agencyAppoinmentSelector(context, Colors.yellow, kBlack,
-              ["IC", "Passport", "VISA", "More"], "KEMENTERIAN DALAM NEGERI"),
+              ["jpj", "renew_license", "logistic", "arrow_right"],
+              "KEMENTERIAN PENGANGKUTAN MALAYSIA",
+              'MOT'),
+          _agencyAppoinmentBuilder(
+              context,
+              Colors.yellow,
+              kBlack,
+              ["IC", "Passport", "VISA", "More"],
+              ["ic", "passport", "visa", "arrow_right"],
+              "KEMENTERIAN DALAM NEGERI",
+              "KDN"),
         ]),
       ),
     );

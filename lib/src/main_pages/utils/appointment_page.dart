@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
-import 'package:temugov_dev/src/main_pages/home/home_page.dart';
 import 'package:temugov_dev/src/root_page.dart';
 
 class AppointPage extends StatefulWidget {
