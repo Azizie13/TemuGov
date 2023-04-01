@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:temugov_dev/src/size_config.dart';
 
 class Splash extends StatelessWidget {
   const Splash({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

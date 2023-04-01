@@ -5,6 +5,8 @@ import 'package:temugov_dev/src/main_pages/utils/appointment_page.dart';
 import 'package:temugov_dev/src/main_pages/home/chatbot_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/dependent_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/faq_page.dart';
+import 'package:temugov_dev/src/main_pages/utils/fast_lane_page.dart';
+import 'package:temugov_dev/src/main_pages/utils/news_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/setting_page.dart';
 import 'package:temugov_dev/src/main_pages/utils/todo_page.dart';
 
@@ -78,8 +80,8 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),
-          height: 130,
           width: 330,
+          height: 130,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
@@ -213,7 +215,7 @@ class HomePage extends StatelessWidget {
                     }),
                     _buildIcon(Icons.chat, "News", () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ChatPage()));
+                          builder: (context) => const NewsPage()));
                     }),
                   ],
                 ),
@@ -228,9 +230,9 @@ class HomePage extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SettingPage()));
                     }),
-                    _buildIcon(Icons.more_horiz_sharp, "Fast Lane", () {
+                    _buildIcon(Icons.bolt_rounded, "Fast Lane", () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SettingPage()));
+                          builder: (context) => const FastLanePage()));
                     })
                   ],
                 ),

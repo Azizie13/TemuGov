@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
+import 'package:temugov_dev/src/main_pages/home/profile_page.dart';
 import 'package:temugov_dev/src/root_page.dart';
 
 class AppointPage extends StatefulWidget {
@@ -129,10 +130,10 @@ class _AppointPageState extends State<AppointPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ..._buildInfo("Full Name", "James Bond"),
-                  ..._buildInfo("IC Number", "James Bond"),
-                  ..._buildInfo("E-mail", "James Bond"),
-                  ..._buildInfo("Phone Number", "James Bond"),
+                  ..._buildInfo("Full Name", user.fullName),
+                  ..._buildInfo("IC Number", user.icNumber),
+                  ..._buildInfo("E-mail", user.email),
+                  ..._buildInfo("Phone Number", user.phoneNumber),
                   const SizedBox(
                     height: 50,
                   ),

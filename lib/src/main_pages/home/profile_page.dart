@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/size_config.dart';
+import 'package:temugov_dev/src/user_data.dart';
+
+final UserData user = UserData();
 
 class ProfilePage extends StatefulWidget {
-  ProfilePage({super.key});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -14,6 +17,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    user.fullName = 'James Bond';
+    user.icNumber = '010123-10-1234';
+    user.email = 'test_email@gmail.com';
+    user.phoneNumber = '+60171234567';
+    user.gender = 'm';
+
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       AppBar(
         automaticallyImplyLeading: false,
@@ -48,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
       Padding(
         padding: const EdgeInsets.all(5.0),
         child: Text(
-          "James#4107",
+          user.temuGovID,
           style: kOpenSansBold.copyWith(fontSize: 16),
         ),
       ),
@@ -68,10 +77,10 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ..._buildInfo("Full Name", "James Bond"),
-              ..._buildInfo("IC", "010123-03-1234"),
-              ..._buildInfo("E-mail", "test_email@gmail.com"),
-              ..._buildInfo("Phone Number", "+601733434567"),
+              ..._buildInfo("Full Name", user.fullName),
+              ..._buildInfo("IC", user.icNumber),
+              ..._buildInfo("E-mail", user.email),
+              ..._buildInfo("Phone Number", user.phoneNumber),
               Row(
                 children: [
                   Padding(
@@ -90,7 +99,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         color: kWhite),
-                    child: const Center(child: Icon(Icons.person)),
+                    child: Center(
+                        child: Icon(user.gender == 'm'
+                            ? Icons.person
+                            : Icons.person_2)),
                   ),
                 ],
               ),
@@ -109,6 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         onChanged: (value) {
                           setState(() {
                             isAgreed = value!;
+                            user.hasAgreed = isAgreed;
                           });
                           debugPrint('Button pressed');
                         }),
