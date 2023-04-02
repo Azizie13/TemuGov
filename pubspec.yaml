@@ -35,6 +35,7 @@ flutter:
     - assets/images/
     - assets/images/gov_logo/
     - assets/images/services/
+    - assets/images/lang/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

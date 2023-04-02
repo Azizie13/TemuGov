@@ -12,6 +12,9 @@ class AppointManagePage extends StatefulWidget {
 
 class _AppointManagePageState extends State<AppointManagePage> {
   bool isOverlayOpened = false;
+  bool isCounterOverlayOpened = false;
+  bool isRescheduleOpened = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +32,11 @@ class _AppointManagePageState extends State<AppointManagePage> {
           ? Stack(
               children: [
                 _buildMainBody(),
-                _buildOverlay(),
+                isCounterOverlayOpened
+                    ? _buildCounterOverlay()
+                    : isRescheduleOpened
+                        ? _buildRescheduleOverlay()
+                        : _buildOverlay(),
               ],
             )
           : _buildMainBody(),
@@ -172,12 +179,20 @@ class _AppointManagePageState extends State<AppointManagePage> {
                       ),
                     ),
                     const SizedBox(
-                      width: 35,
+                      width: 10,
                     ),
-                    const Icon(
-                      Icons.list,
-                      size: 30,
-                      color: kBlack,
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isOverlayOpened = true;
+                          isRescheduleOpened = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.list,
+                        size: 25,
+                        color: kBlack,
+                      ),
                     )
                   ],
                 ));
@@ -200,9 +215,133 @@ class _AppointManagePageState extends State<AppointManagePage> {
               height: double.infinity,
               color: Colors.black.withOpacity(0.75)),
         ),
+        GestureDetector(
+          onDoubleTap: () {
+            setState(
+              () {
+                isCounterOverlayOpened = true;
+              },
+            );
+          },
+          child: Container(
+            width: 340,
+            height: 360,
+            decoration: BoxDecoration(
+                color: kDeepPurple, borderRadius: BorderRadius.circular(60)),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 24, bottom: 11),
+                  child: Text(
+                    "LIVE QUEUE",
+                    style: kMontBold.copyWith(fontSize: 20, color: kWhite),
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: kDarkPurple,
+                  ),
+                  width: 260,
+                  height: 150,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "YOUR NUMBER",
+                          style:
+                              kMontBold.copyWith(fontSize: 20, color: kWhite),
+                        ),
+                      ),
+                      Text(
+                        "089",
+                        style: kMontBold.copyWith(fontSize: 90, color: kWhite),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(5.0),
+                          child: Text(
+                            "CURRENT NUMBER",
+                            style:
+                                kMontBold.copyWith(fontSize: 10, color: kWhite),
+                          ),
+                        ),
+                        Text(
+                          "079",
+                          style:
+                              kMontBold.copyWith(fontSize: 48, color: kWhite),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(10.0),
+                      width: 20,
+                      height: 130,
+                      decoration: const BoxDecoration(
+                        color: kDarkPurple,
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(5.0),
+                          child: Text(
+                            "WAITING NUMBER",
+                            style:
+                                kMontBold.copyWith(fontSize: 10, color: kWhite),
+                          ),
+                        ),
+                        Text(
+                          "10",
+                          style:
+                              kMontBold.copyWith(fontSize: 48, color: kWhite),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(5.0),
+                          child: Text(
+                            "PERSON LEFT",
+                            style:
+                                kMontBold.copyWith(fontSize: 8, color: kWhite),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCounterOverlay() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              isOverlayOpened = false;
+              isCounterOverlayOpened = false;
+            });
+          },
+          child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.black.withOpacity(0.75)),
+        ),
         Container(
           width: 340,
-          height: 360,
+          height: 380,
           decoration: BoxDecoration(
               color: kDeepPurple, borderRadius: BorderRadius.circular(60)),
           child: Column(
@@ -210,7 +349,7 @@ class _AppointManagePageState extends State<AppointManagePage> {
               Container(
                 margin: const EdgeInsets.only(top: 24, bottom: 11),
                 child: Text(
-                  "LIVE QUEUE",
+                  "PLEASE GO TO THE COUNTER",
                   style: kMontBold.copyWith(fontSize: 20, color: kWhite),
                 ),
               ),
@@ -236,57 +375,71 @@ class _AppointManagePageState extends State<AppointManagePage> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(5.0),
-                        child: Text(
-                          "CURRENT NUMBER",
-                          style:
-                              kMontBold.copyWith(fontSize: 10, color: kWhite),
-                        ),
-                      ),
-                      Text(
-                        "079",
-                        style: kMontBold.copyWith(fontSize: 48, color: kWhite),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    width: 20,
-                    height: 130,
-                    decoration: const BoxDecoration(
-                      color: kDarkPurple,
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(5.0),
-                        child: Text(
-                          "WAITING NUMBER",
-                          style:
-                              kMontBold.copyWith(fontSize: 10, color: kWhite),
-                        ),
-                      ),
-                      Text(
-                        "10",
-                        style: kMontBold.copyWith(fontSize: 48, color: kWhite),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(5.0),
-                        child: Text(
-                          "PERSON LEFT",
-                          style: kMontBold.copyWith(fontSize: 8, color: kWhite),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+              Container(
+                margin: const EdgeInsets.all(5.0),
+                child: Text(
+                  "COUNTER NUMBER",
+                  style: kMontBold.copyWith(fontSize: 10, color: kWhite),
+                ),
+              ),
+              Text(
+                "01",
+                style: kMontBold.copyWith(fontSize: 50, color: kWhite),
+              ),
+              Container(
+                margin: const EdgeInsets.all(5.0),
+                child: Text(
+                  "NEED TO GO TO THE COUNTER BEFORE",
+                  style: kMontBold.copyWith(fontSize: 10, color: kWhite),
+                ),
+              ),
+              Text(
+                "59 SECS",
+                style: kMontBold.copyWith(fontSize: 40, color: kWhite),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRescheduleOverlay() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              isOverlayOpened = false;
+              isCounterOverlayOpened = false;
+              isRescheduleOpened = false;
+            });
+          },
+          child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.black.withOpacity(0.75)),
+        ),
+        Container(
+          width: 340,
+          height: 200,
+          decoration: BoxDecoration(
+              color: kBlack, borderRadius: BorderRadius.circular(60)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('Reschedule Appointment'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red, foregroundColor: kWhite),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('Cancel Appointment'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow, foregroundColor: kBlack),
               ),
             ],
           ),

@@ -34,12 +34,47 @@ class LanguageSelectPage extends StatelessWidget {
     Widget languageElevatedButtons = Column(
       children: [
         const SizedBox(height: 10),
-        _buildButton("ENGLISH", () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => InfoPage()));
-        }),
+        Stack(
+          alignment: Alignment.centerRight,
+          children: [
+            _buildButton("ENGLISH", () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => InfoPage()));
+            }),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/lang/UK.png',
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          ],
+        ),
         const SizedBox(height: 20),
-        _buildButton("MALAY", () {}),
+        Stack(
+          alignment: Alignment.centerRight,
+          children: [
+            _buildButton("MALAY", () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => InfoPage()));
+            }),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/lang/MY.png',
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          ],
+        ),
         const SizedBox(height: 20),
         _buildButton("MORE...", () {})
       ],

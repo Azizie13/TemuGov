@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:temugov_dev/src/app_styles.dart';
 import 'package:temugov_dev/src/decoration/background.dart';
+import 'package:temugov_dev/src/info_pages/permission_page.dart';
 import 'package:temugov_dev/src/info_pages/register_page.dart';
 import 'package:temugov_dev/src/main_pages/guest/root_page_guest.dart';
 import 'package:temugov_dev/src/root_page.dart';
@@ -58,7 +59,7 @@ class LoginPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const RegisterPage()));
+                        builder: (context) => PermissionPage()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: kPurple,

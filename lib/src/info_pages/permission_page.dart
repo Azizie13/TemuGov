@@ -92,13 +92,15 @@ class PermissionPage extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(top: 25, bottom: 10.0),
                 child: _buildButton("Turn On Location", () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => RootPage()));
+                  _pageController.nextPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.ease);
                 })),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => RootPage()));
+                  _pageController.nextPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.ease);
                 },
                 child: Text(
                   "Skip for now",
